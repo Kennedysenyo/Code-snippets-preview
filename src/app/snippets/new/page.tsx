@@ -19,12 +19,13 @@ export default function SnippetCreatePage() {
         code
       }
     });
-    console.log(snippet);
+    
 
     // Redirect the user  back to the root route
     redirect("/");
 
   }
+
 
   return (
     <form action={createSnippet}>
