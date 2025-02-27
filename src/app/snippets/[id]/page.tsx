@@ -8,24 +8,25 @@ interface SnippetShowPageProps {
   }
 }
 
-export default async function SnippetShowPage(props: SnippetShowPageProps) {
+export default async function SnippetShowPage({params}: SnippetShowPageProps) {
   await new Promise(resolve => setTimeout(resolve, 2000));
+  
 
   const snippet = await db.snippet.findFirst({
-    where: { id: parseInt(props.params.id) }
+    where: { id: parseInt(params.id) }
   })
   
   if(!snippet) {
     return notFound();
   }
 
-  console.log(props);
+  console.log(params);
   return  <div>
     <div className="flex m-4 justify-between items-center">
       <h1 className="text-xl font-bold">{snippet.title}</h1>
       <div className="flex gap-3">
         <Link 
-          href={`/snippets/${props.params.id}/edit`}
+          href={`/snippets/${params.id}/edit`}
           className="p-2 border rounded"
         >
           Edit
